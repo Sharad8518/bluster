@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+.table-head{
+
+    font-size: 12px;
+}
+.table-data{
+    font-size: 12px;
+
+}
+.edit-icon{
+    margin: 1px;
+    position: relative;
+    left: 10%;
+    top: 1%;
+}

@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "image": "https://flone.jamstacktemplates.dev/assets/img/banner/banner-8.png",
+    "title": "HeadPhone",
+    "subtitle": "Starting at",
+    "price": "Rs. 99.00",
+    "link": "/shop-grid-standard"
+  },
+  {
+    "id": 2,
+    "image": "https://flone.jamstacktemplates.dev/assets/img/banner/banner-9.png",
+    "title": "Bluetooth",
+    "subtitle": "Starting at",
+    "price": "Rs. 79.00",
+    "link": "/shop-grid-standard"
+  }
+]

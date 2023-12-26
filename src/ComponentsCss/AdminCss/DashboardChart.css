@@ -1,0 +1,60 @@
+.chjartmain{
+    padding: 30px;
+}
+
+.chartcard{
+  cursor: pointer;
+  border-radius: 15px;
+  padding: 20px;
+  color: #ffffff;
+  margin-top: 15px;
+  font-weight: 700;
+  transition: 1.5s;
+  display: flex;
+  background: linear-gradient(90deg, rgba(27,223,218,1) 0%, rgba(89,128,232,1) 100%);
+ box-shadow: 10px 10px 10px 10px rgba(240, 239, 239, 0.2), 10px 10px 10px 10px rgba(236, 235, 235, 0.19);
+}
+.chartcard4:hover,.chartcard3:hover,.chartcard2:hover, .chartcard:hover{
+    transform: scale(1.1);
+}
+.txticon{
+    display: flex;
+    font-size: 30px;
+    justify-content: flex-end;
+}
+.chartcard2{
+    cursor: pointer;
+    border-radius: 15px;
+    padding: 20px;
+    color: #ffffff;
+    font-weight: 700;
+    margin-top: 15px;
+    transition: 1.5s;
+    display: flex;
+    background: linear-gradient(90deg, rgba(246,82,155,1) 0%, rgba(254,113,121,1) 100%);
+   box-shadow: 10px 10px 10px 10px rgba(240, 239, 239, 0.2), 10px 10px 10px 10px rgba(236, 235, 235, 0.19);
+  }
+.chartcard3{
+    cursor: pointer;
+    border-radius: 15px;
+    padding: 20px;
+    color: #ffffff;
+    margin-top: 15px;
+    font-weight: 700;
+    transition: 1.5s;
+    display: flex;
+    background: linear-gradient(90deg, rgba(94,226,163,1) 0%, rgba(59,180,181,1) 100%);
+   box-shadow: 10px 10px 10px 10px rgba(240, 239, 239, 0.2), 10px 10px 10px 10px rgba(236, 235, 235, 0.19);
+  }
+.chartcard4{
+    cursor: pointer;
+    border-radius: 15px;
+    padding: 20px;
+    color: #ffffff;
+    font-weight: 700;
+    margin-top: 15px;
+    transition: 1.5s;
+    display: flex;
+    background: linear-gradient(90deg, rgba(255,215,64,1) 0%, rgba(255,137,86,1) 100%);
+   box-shadow: 10px 10px 10px 10px rgba(240, 239, 239, 0.2), 10px 10px 10px 10px rgba(236, 235, 235, 0.19);
+  }

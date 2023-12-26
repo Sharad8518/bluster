@@ -1,0 +1,76 @@
+[
+  
+  {
+    "id": "1",
+    "image": "/assets/img/product/category/earphone.png",
+    "subtitle": "4 Products",
+    "title": "Airpods",
+    "link": "/shop-grid-standard",
+    "category" : "Airpods"
+  },
+  {
+    "id": "2",
+    "image": "/assets/img/product/category/neckband.png",
+    "subtitle": "4 Products",
+    "title": "Neckband",
+    "link": "/shop-grid-standard",
+    "category" : "Neckband"
+
+  },
+  {
+    "id": "3",
+    "image": "/assets/img/product/category/headphone.png",
+    "subtitle": "4 Products",
+    "title": "Earphone / Headphone",
+    "link": "/shop-grid-standard",
+    "category" : "Earphone Headphone"
+  },
+  {
+    "id": "4",
+    "image": "/assets/img/product/category/smart watch.png",
+    "subtitle": "4 Products",
+    "title": "Samart Watch",
+    "link": "/shop-grid-standard",
+    "category" : "Smart Watch"
+  },
+  {
+    "id": "5",
+    "image": "/assets/img/product/category/trimmer.png",
+    "subtitle": "4 Products",
+    "title": "Trimmer",
+    "link": "/shop-grid-standard",
+    "category" : "Trimmer"
+  },
+  {
+    "id": "6",
+    "image": "/assets/img/product/category/powerbank.png",
+    "subtitle": "4 Products",
+    "title": "Powerbank's",
+    "link": "/shop-grid-standard",
+    "category" : "Powerbanks"
+  },
+  {
+    "id": "7",
+    "image": "/assets/img/product/category/speaker.png",
+    "subtitle": "4 Products",
+    "title": "Speaker",
+    "link": "/shop-grid-standard",
+    "category" : "Speaker"
+  },
+  {
+    "id": "8",
+    "image": "/assets/img/product/category/earphone.png",
+    "subtitle": "4 Products",
+    "title": "Women's Essentials",
+    "link": "/shop-grid-standard",
+    "category" : "Women Essentials"
+  },
+  {
+    "id": "9",
+    "image": "/assets/img/product/category/gagetes.png",
+    "subtitle": "4 Products",
+    "title": "Gadget's",
+    "link": "/shop-grid-standard",
+    "category" : "Gadgets"
+  }
+]
