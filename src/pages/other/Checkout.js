@@ -39,7 +39,7 @@ const Checkout = () => {
   const [addressState, setAddressState] = useState('')
   const [pincodeState, setPincodeState] = useState('')
   const [alternativeMobState, setAlternativeMobState] = useState('')
-  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState();
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('');
   const [addressTwo, setAddressTwo] = useState('');
 
   const [allProducts, setAllProducts] = useState([])
@@ -112,15 +112,18 @@ const Checkout = () => {
     else {
       setValidated(false);
       event.preventDefault();
+     if(selectedPaymentMethod === "") {
+      swal("Oops!", "Choose Payment Type", "error")
+
+     }else{
       if(selectedPaymentMethod === "online"){
         setValidated(false);
         event.preventDefault();
           const payload ={
-            merchantId: "M22N7N4TBLWA4",
+            merchantId: "PGTESTPAYUAT",
             merchantTransactionId: "MT7850590068188104",
             merchantUserId: "MUID123",
             amount: 10000,
-         
             redirectMode:"POST",
             callbackUrl: "https://webhook.site/callback-url",
             mobileNumber: "9999999999",
@@ -135,7 +138,7 @@ const Checkout = () => {
         const dataBase64 = Buffer.from(dataPayload).toString('base64');
         console.log(dataBase64)
   
-        const fullURL = dataBase64 +"/pg/v1/pay" +"302e79fb-8df7-4b77-92ed-58ef2d5df6e2" ;
+        const fullURL = dataBase64 +"/pg/v1/pay" +"099eb0cd-02cf-4e2a-8aca-3e6c6aff0399" ;
         const dataSha256 =sha256(fullURL);
   
         const checksum = dataSha256 + "###" + 1
@@ -159,10 +162,8 @@ const Checkout = () => {
          const redirect = response.data.data.instrumentResponse.redirectInfo.url;
          window.location.href=redirect;
 
-      
-         
-         
-      
+         localStorage.setItem("PaymentDetail",response)
+         localStorage.setItem('Name', 'Rahul');
         createOrder({
           variables: {
             "orderInput": {
@@ -231,11 +232,132 @@ const Checkout = () => {
 
       }
       
-    
-    
     }
-
+  }
   };
+
+
+
+
+  
+//online pay
+  const handelPayment =async(event)=>{
+    try{
+      const transactionId ="T-bluster-"+uuidv4().toString(36).slice(-6);
+      const payload ={
+        merchantId: "M22N7N4TBLWA4",
+        merchantTransactionId:transactionId,
+        merchantUserId: contactState,
+        amount: cartTotalPrice *100,
+        redirectMode:"POST",
+        callbackUrl: "https://webhook.site/callback-url",
+        mobileNumber: contactState,
+        paymentInstrument: {
+          type: "PAY_PAGE"
+        }
+    }
+    const dataPayload = JSON.stringify(payload);
+    console.log(dataPayload);
+
+    const dataBase64 = Buffer.from(dataPayload).toString('base64');
+    console.log(dataBase64)
+
+    const fullURL = dataBase64 +"/pg/v1/pay" +"302e79fb-8df7-4b77-92ed-58ef2d5df6e2" ;
+    const dataSha256 =sha256(fullURL);
+
+    const checksum = dataSha256 + "###" + 1
+
+    console.log("checksum",checksum)
+     const UAT_PAY_API_URI ="https://api.phonepe.com/apis/hermes/pg/v1/pay";
+    const response = await axios.post(
+    UAT_PAY_API_URI,
+    {
+      request:dataBase64,
+    },
+    {
+          headers:{
+            accept:"application/json",
+            "Content-Type": "application/json",
+            "X-VERIFY":checksum,
+          },
+    }
+    )
+     const redirect = response.data.data.instrumentResponse.redirectInfo.url;
+     window.location.href=redirect;
+     createOrder({
+      variables: {
+        "orderInput": {
+          // "userId": userId,
+          "productDetails": allProducts,
+           "paymentId": `${transactionId}`,
+           "paymentMethod": "Online Pay",
+          "fName": `${fnameState}`,
+          "lName": `${lnameState}`,
+          "contact": `${contactState}`,
+          "alternateContactNo": `${alternativeMobState}`,
+          "email": `${emailState}`,
+          "address": `${addressState}`,
+          "addressTwo": `${addressTwo}`,
+          "state": `${stateState}`,
+          "city": `${cityState}`,
+          "pincode": `${pincodeState}`
+        }
+      }
+    }).then((data) => {
+      swal({
+        title: "Success",
+        text: "Product Successfully Placed",
+        icon: "success",
+      })
+      navigate('/thankyou', { state: data });
+      emptyCart(cartData);
+
+    }).catch((e) => {
+      swal("Oops!", "Seems like we couldn't fetch the info", "error"
+      );
+    })
+
+    }catch(error){
+      swal("Oops!", "Seems like we couldn't fetch the info", "error")
+    }
+   
+  }
+
+//cash on delivery
+   const handelCOD =()=>{
+    createOrder({
+      variables: {
+        "orderInput": {
+          // "userId": userId,
+          "productDetails": allProducts,
+           "paymentId": `${transactionId}`,
+           "paymentMethod": "Cash on Delivery",
+          "fName": `${fnameState}`,
+          "lName": `${lnameState}`,
+          "contact": `${contactState}`,
+          "alternateContactNo": `${alternativeMobState}`,
+          "email": `${emailState}`,
+          "address": `${addressState}`,
+          "addressTwo": `${addressTwo}`,
+          "state": `${stateState}`,
+          "city": `${cityState}`,
+          "pincode": `${pincodeState}`
+        }
+      }
+    }).then((data) => {
+      swal({
+        title: "Success",
+        text: "Product Successfully Placed",
+        icon: "success",
+      })
+      navigate('/thankyou', { state: data });
+      emptyCart(cartData);
+
+    }).catch((e) => {
+      swal("Oops!", "Seems like we couldn't fetch the info", "error"
+      );
+    })
+   }
 
   return (
     <Fragment>
@@ -502,7 +624,7 @@ const Checkout = () => {
                             <Form.Control.Feedback type="invalid">Please Enter Road Name, Area, Colony</Form.Control.Feedback>
                           </Form.Group>
                         </Row>
-                        {
+                        {/* {
                           createOrderLoading ?
                             <Spinner animation="border" role="status" className="mx-auto d-block">
                               <span className="visually-hidden">Loading...</span>
@@ -510,7 +632,7 @@ const Checkout = () => {
                             <div className="placeOrderBottomDiv">
                               <Button type="submit" className="placeorderbtn">Place Order</Button>
                             </div>
-                        }
+                        } */}
                       </Form>
                     </div>
                   </div>
@@ -587,10 +709,29 @@ const Checkout = () => {
                         </div>
                       </div>
                       <div className="place-order mt-25">
-                        {/* <button className="btn-hover"
+                      { fnameState === '' || lnameState ==='' || emailState==='' ||contactState ==='' ||stateState ==='' || cityState== '' || addressState ==='' || pincodeState ==='' ||alternativeMobState==='' ||selectedPaymentMethod ==='' ||addressTwo ===''?
+                        <Button className="btn-hover"
+                         disabled
+                        
+                        >Place Order</Button>
+                      :
+                      selectedPaymentMethod === "online"?
+                        <button className="btn-hover"
                          
                         // disabled={!isFormValid}
-                        >Place Order</button> */}
+                        onClick={()=>handelPayment()}>Place Order</button>
+                      :
+                      createOrderLoading ?
+                      <Spinner animation="border" role="status" className="mx-auto d-block">
+                      <span className="visually-hidden">Loading...</span>
+                    </Spinner>
+                      :
+                     <button className="btn-hover"
+                     onClick={()=>handelCOD()}
+                        // disabled={!isFormValid}
+                        >Place Order</button>
+                      }
+                     
                       </div>
                     </div>
                   </div>
