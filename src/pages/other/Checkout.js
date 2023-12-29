@@ -245,10 +245,10 @@ const Checkout = () => {
     alert("ok")
       const transactionId ="T-bluster-"+uuidv4().toString(36).slice(-6);
       const payload ={
-         merchantId: "PGTESTPAYUAT",
+         merchantId: "M22N7N4TBLWA4",
          merchantTransactionId: "MT7850590068188104",
          merchantUserId: "MUID123",
-         amount: 10000,
+         amount: 100,
          redirectUrl: "https://webhook.site/redirect-url",
          redirectMode: "REDIRECT",
          callbackUrl: "https://webhook.site/callback-url",
@@ -263,13 +263,13 @@ const Checkout = () => {
     const dataBase64 = Buffer.from(dataPayload).toString('base64');
     console.log(dataBase64)
 
-    const fullURL = dataBase64 +"/pg/v1/pay" +"099eb0cd-02cf-4e2a-8aca-3e6c6aff0399" ;
+    const fullURL = dataBase64 +"/pg/v1/pay" +"302e79fb-8df7-4b77-92ed-58ef2d5df6e2" ;
     const dataSha256 =sha256(fullURL);
 
     const checksum = dataSha256 + "###" + 1
 
     console.log("checksum",checksum)
-     const UAT_PAY_API_URI ="https://api-preprod.phonepe.com/apis/pg-sandbox/pg/v1/pay";
+     const UAT_PAY_API_URI ="https://api.phonepe.com/apis/hermes/pg/v1/pay";
     const response = await axios.post(
     UAT_PAY_API_URI,
     {
