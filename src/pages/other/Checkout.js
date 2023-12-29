@@ -248,7 +248,7 @@ const Checkout = () => {
         merchantId: "M22N7N4TBLWA4",
         merchantTransactionId:transactionId,
         merchantUserId: contactState,
-        amount: cartTotalPrice *100,
+        amount: 1000,
         redirectMode:"POST",
         callbackUrl: "https://webhook.site/callback-url",
         mobileNumber: contactState,
