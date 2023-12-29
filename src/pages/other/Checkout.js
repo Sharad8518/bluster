@@ -241,8 +241,8 @@ const Checkout = () => {
 
   
 //online pay
-  const handelPayment =async(event)=>{
-    try{
+  const handelPayment =async()=>{
+  
       const transactionId ="T-bluster-"+uuidv4().toString(36).slice(-6);
       const payload ={
         merchantId: "M22N7N4TBLWA4",
@@ -284,43 +284,8 @@ const Checkout = () => {
     )
      const redirect = response.data.data.instrumentResponse.redirectInfo.url;
      window.location.href=redirect;
-     createOrder({
-      variables: {
-        "orderInput": {
-          // "userId": userId,
-          "productDetails": allProducts,
-           "paymentId": `${transactionId}`,
-           "paymentMethod": "Online Pay",
-          "fName": `${fnameState}`,
-          "lName": `${lnameState}`,
-          "contact": `${contactState}`,
-          "alternateContactNo": `${alternativeMobState}`,
-          "email": `${emailState}`,
-          "address": `${addressState}`,
-          "addressTwo": `${addressTwo}`,
-          "state": `${stateState}`,
-          "city": `${cityState}`,
-          "pincode": `${pincodeState}`
-        }
-      }
-    }).then((data) => {
-      swal({
-        title: "Success",
-        text: "Product Successfully Placed",
-        icon: "success",
-      })
-      navigate('/thankyou', { state: data });
-      emptyCart(cartData);
+  
 
-    }).catch((e) => {
-      swal("Oops!", "Seems like we couldn't fetch the info", "error"
-      );
-    })
-
-    }catch(error){
-      swal("Oops!", "Seems like we couldn't fetch the info", "error")
-    }
-   
   }
 
 //cash on delivery
