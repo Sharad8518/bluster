@@ -238,7 +238,7 @@ const Checkout = () => {
 
 
 
-
+  const[payamount,setPayAmount] =useState(1)
   
 //online pay
   const handelPayment =async()=>{
@@ -247,7 +247,7 @@ const Checkout = () => {
         merchantId: "M22N7N4TBLWA4",
         merchantTransactionId:transactionId,
         merchantUserId: contactState,
-        amount:1000,
+        amount:payamount*100,
         redirectMode:"POST",
         callbackUrl: "https://webhook.site/callback-url",
         mobileNumber: contactState,
@@ -286,6 +286,8 @@ const Checkout = () => {
   
 
   }
+
+
 
 //cash on delivery
    const handelCOD =()=>{
