@@ -242,15 +242,17 @@ const Checkout = () => {
   
 //online pay
   const handelPayment =async()=>{
+    alert("ok")
       const transactionId ="T-bluster-"+uuidv4().toString(36).slice(-6);
       const payload ={
         merchantId: "M22N7N4TBLWA4",
         merchantTransactionId:transactionId,
-        merchantUserId: contactState,
+        merchantUserId: "88269656605",
         amount:payamount*100,
+        redirectUrl: "https://webhook.site/redirect-url",
         redirectMode:"POST",
         callbackUrl: "https://webhook.site/callback-url",
-        mobileNumber: contactState,
+        mobileNumber: "88269656605",
         paymentInstrument: {
           type: "PAY_PAGE"
         }
