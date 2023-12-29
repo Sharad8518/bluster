@@ -695,6 +695,13 @@ const Checkout = () => {
                         // disabled={!isFormValid}
                         >Place Order</button>
                       }
+
+
+
+<button className="btn-hover"
+                     onClick={()=>handelPayment()}
+                        // disabled={!isFormValid}
+                        >Place Order</button>
                      
                       </div>
                     </div>
